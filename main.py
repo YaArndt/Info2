@@ -2,8 +2,14 @@ from xwizard_templates import *
 
 if __name__ == "__main__":
     
-    states = num_states(3)
-    arrows = ["a", "b"]
+    alph = ["a", "b"]
+    bin = [0, 1]
     
-    template = fsm_template(states, arrows)
+    states = num_states(3)
+    
+    template = fsm_template(states, bin)
     addToClipBoard(template)
+    
+    
+    # pda_template_text = pda_template(states, alph, bin)
+    # addToClipBoard(pda_template_text)
