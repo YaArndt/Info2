@@ -3,7 +3,7 @@ from hamming import *
 from number_coding import *
 
 # Requires Pyperclip:
-# pip install pyperclip
+# pip install pyperclip numpy scipy pandas
 
 if __name__ == "__main__":
     
@@ -30,17 +30,30 @@ if __name__ == "__main__":
     # HAMMING  AUTOMATION
     # -----------------------------------------------------------------------
     
-    listed_hamming([
-        "HUFFMAN",
-        "HOFMANN"
-    ])
+    # listed_hamming([
+    #     "HUFFMAN",
+    #     "HOFMANN"
+    # ])
     
     # -----------------------------------------------------------------------
     # NUMBER AUTOMATION
     # -----------------------------------------------------------------------
     
-    twos_comp(-4, 4)
+    # twos_comp(-4, 4)
     
-    BCD_to_decimal('0111')
+    # BCD_to_decimal('0111')
     
-    BCD_from_decimal(8)
+    # BCD_from_decimal(8)
+    
+    # -----------------------------------------------------------------------
+    # CACHE SIMULATION
+    # -----------------------------------------------------------------------
+    
+    # directly_mapped_cache(8, [
+    #     101, 102, 104, 108, 104, 103, 104, 102, 107, 180, 101, 102, 103, 110, 111, 112
+    # ])
+        
+            
+    # associative_cache(8, [
+    #     101, 102, 104, 108, 104, 103, 104, 102, 107, 180, 101, 102, 103, 110, 111, 112
+    # ])
