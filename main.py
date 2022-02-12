@@ -1,9 +1,10 @@
 from xwizard_templates import *
 from hamming import *
 from number_coding import *
+from cache_calculator import *
 
-# Requires Pyperclip:
-# pip install pyperclip numpy scipy pandas
+# REQUIREMENTS!!! EXECUTE THIS IN  THE TERMINAL!!!
+# pip install pyperclip numpy scipy pandas'
 
 if __name__ == "__main__":
     
