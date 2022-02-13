@@ -40,15 +40,22 @@ if __name__ == "__main__":
     # NUMBER AUTOMATION
     # -----------------------------------------------------------------------
     
-    # twos_comp(-4, 4)
+    # BCD_from_decimal("89684943")
+    # BCD_to_decimal("10001001011010000100100101000011")
     
-    # BCD_to_decimal('10011001010000000000000000001000')
+    # EXC3_from_decimal("193")
+    # EXC3_to_decimal("10011100")
     
-    # BCD_from_decimal(88756)#
+    # AIKEN_from_decimal("234")
+    # AIKEN_to_decimal("11001111")
     
-    # EXC3_to_decimal('001110011010')
+    # # Check which encoding  is valid and return the corresponding decimal
+    # get_valid_encoding("01110011010110100100101101100101")
     
-    # EXC3_from_decimal('991991')
+    # # Encode in BCD, Excess3 and AIKEN
+    # encode_in_all("69")
+    
+    # twos_comp(-1, 4)
     
     # -----------------------------------------------------------------------
     # CACHE SIMULATION
