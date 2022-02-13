@@ -108,7 +108,6 @@ def associative_cache(k: int, addresses: List[int], print_res: bool = True) -> p
                 filled = True
                 
             cache_tag[last_empty] = address
-            cache_addresses[last_empty] = [address]
             seen.add(address)
             
             cache_dates[last_empty] = [time_counter + 1]
@@ -116,6 +115,11 @@ def associative_cache(k: int, addresses: List[int], print_res: bool = True) -> p
             
             time_counter += 1
             last_empty += 1
+                
+    for i in range(k):
+        
+        if cache_tag[i] is not None:
+            cache_addresses[i].append(cache_tag[i])           
                 
     result = pd.DataFrame(data=[], columns=[])
     
