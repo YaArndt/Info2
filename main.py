@@ -4,7 +4,7 @@ from number_coding import *
 from cache_calculator import *
 
 # REQUIREMENTS!!! EXECUTE THIS IN  THE TERMINAL!!!
-# pip install pyperclip numpy scipy pandas'
+# pip install pyperclip numpy scipy pandas
 
 if __name__ == "__main__":
     
@@ -42,9 +42,13 @@ if __name__ == "__main__":
     
     # twos_comp(-4, 4)
     
-    # BCD_to_decimal('0111')
+    # BCD_to_decimal('10011001010000000000000000001000')
     
-    # BCD_from_decimal(8)
+    # BCD_from_decimal(88756)#
+    
+    # EXC3_to_decimal('001110011010')
+    
+    # EXC3_from_decimal('991991')
     
     # -----------------------------------------------------------------------
     # CACHE SIMULATION
