@@ -1,6 +1,5 @@
 from typing import *
 import pandas as pd
-from sqlalchemy import false
 
 def directly_mapped_cache(k: int, addresses: List[int], print_res: bool = True) -> pd.DataFrame:
     """Function to simulate a directly mapped cache.
