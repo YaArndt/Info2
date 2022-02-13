@@ -1,12 +1,23 @@
-from textwrap import fill
 from typing import *
 import pandas as pd
+from sqlalchemy import false
 
-def directly_mapped_cache(k: int, addresses: List[int]):
+def directly_mapped_cache(k: int, addresses: List[int], print_res: bool = True) -> pd.DataFrame:
+    """Function to simulate a directly mapped cache.
+
+    Args:
+        k (int): Number of lines in the cache.
+        addresses (List[int]): Addresses to be mapped.
+        print_res (bool, optional): Wheather or not to print the result directly. Defaults to True.
+
+    Returns:
+        pd.DataFrame: Dataframe of the cache.
+    """
     
     cache_row = [i for i in range(k)]
     cache_addresses = [[] for _ in range(k)]
     cache_tag = [None] * k
+    cache_tag_div = [None] * k
     
     while len(addresses) > 0:
         
@@ -24,18 +35,32 @@ def directly_mapped_cache(k: int, addresses: List[int]):
         
     for i in range(k):
         if cache_tag[i] is not None:
-            cache_tag[i] = cache_tag[i] // k
+            cache_tag_div[i] = cache_tag[i] // k
 
     result = pd.DataFrame(data=[], columns=[])
     
     result["Row"] = cache_row
     result["Addresses"] = cache_addresses
     result["Tags"] = cache_tag
+    result["Tags Devided"] = cache_tag_div
     
-    print(result)
+    if print_res:
+        print(result)
+    
+    return result
         
         
-def associative_cache(k: int, addresses: List[int]):
+def associative_cache(k: int, addresses: List[int], print_res: bool = True) -> pd.DataFrame:
+    """Function to simulate an associative cache with LRU replacement policy.
+
+    Args:
+        k (int): Number of lines in the cache.
+        addresses (List[int]): Addresses to be mapped.
+        print_res (bool, optional): Wheather or not to prit the results directly. Defaults to True.
+
+    Returns:
+        pd.DataFrame: Dataframe of the results
+    """
     
     seen = set()
     
@@ -101,20 +126,53 @@ def associative_cache(k: int, addresses: List[int]):
     result["Last Date"] = cache_date
     result["Tags"] = cache_tag
         
-    print(result)
+    if print_res:    
+        print(result)
+    
+    return result
         
+def block_cache(blocks: int, lines: int, addresses: List[str]) -> pd.DataFrame:
+    """Simulates a block cache with direct mapping of blocks and associative mapping inside the blocks.
+    Uses LRU in the associative part.
+
+    Args:
+        blocks (int): Number of blocks.
+        lines (int): Number of lines per block.
+        addresses (List[str]): Addresses to be mapped.
+    """
+    
+    direct_coolection = directly_mapped_cache(blocks, addresses, False)["Addresses"]
+    counter = 1
+    
+    for collection in direct_coolection:
         
+        print(f"--------------------------------------------------------------------------\nBLOCK {counter}")
+        
+        associative_result = associative_cache(lines, collection, False)
+        
+        associative_result["Tags Devided"] = [tag // blocks for tag in associative_result["Tags"]]
+        print(associative_result)
+        
+        print("\n\n")
+        
+        counter += 1
+    
+    
+    
         
 if __name__ == "__main__":      
     
-    directly_mapped_cache(8, [
-        101, 102, 104, 108, 104, 103, 104, 102, 107, 180, 101, 102, 103, 110, 111, 112
+    directly_mapped_cache(5, [
+        67, 49, 156, 95, 12, 38, 128, 92, 106, 78, 117, 38, 67, 45, 128, 38, 60, 53, 3, 78, 63, 206, 175, 38, 184, 156, 211
     ])
-        
             
-    associative_cache(8, [
-        101, 102, 104, 108, 104, 103, 104, 102, 107, 180, 101, 102, 103, 110, 111, 112
-    ])
+    # associative_cache(8, [
+    #     12,34,56,78
+    # ])
+    
+    # block_cache(5, 3, [
+    #     67, 49, 156, 95, 12, 38, 128, 92, 106, 78, 117, 38, 67, 45, 128, 38, 60, 53, 3, 78, 63, 206, 175, 38, 184, 156, 211
+    # ])
         
         
         
